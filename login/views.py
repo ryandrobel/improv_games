@@ -40,7 +40,7 @@ def login(request):
     request.session['user_id'] = user.id
     request.session['user_username'] = user.username
     request.session['user_email'] = user.email
-    return redirect('/success')
+    return redirect('/games')
 
 def success(request):
     
