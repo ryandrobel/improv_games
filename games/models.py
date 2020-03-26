@@ -39,9 +39,8 @@ class ReviewManager(models.Manager):
 class Review(models.Model):
     comment = models.TextField()
     rating = models.IntegerField()
-    user_review = models.ManyToManyField(User, related_name = 'reviews')
-    user_comment = models.ManyToManyField(User, related_name = 'comments')
+    game = models.ForeignKey(Game, related_name = 'reviews', on_delete = models.CASCADE)
+    user = models.ForeignKey(User, related_name = 'reviews', on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = ReviewManager()
-

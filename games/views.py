@@ -37,7 +37,8 @@ def create_game(request):
 def view_game(request, game_id):
 
     context = {
-        'game': Game.objects.get(id = game_id)
+        'game': Game.objects.get(id = game_id),
+        
     }
 
     return render(request, 'view_game.html', context)
@@ -72,6 +73,23 @@ def delete_game(request, game_id):
     Game.objects.get(id = game_id).delete()
     return redirect('/games')
     
+def create_review(request, game_id):
+    errors = Review.objects.basic_validator(request.POST)
+    if len(errors) > 0: 
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect (f'/games/{game_id}/view')
+
+    else:
+        Review.objects.create(
+        rating = request.POST['rating'],
+        comment = request.POST['comment'],
+        user = User.objects.get(id = request.session['user_id']),
+        game = Game.objects.get(id = game_id)
+        )
+
+    return redirect (f'/games/{game_id}/view')
+
 
 
 

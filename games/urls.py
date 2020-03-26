@@ -10,5 +10,6 @@ urlpatterns = [
     path('<int:game_id>/edit', views.edit_game),
     path('<int:game_id>/update', views.update_game),
     path('<int:game_id>/delete', views.delete_game),
+    path('<int:game_id>/create_review', views.create_review)
 
 ]

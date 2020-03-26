@@ -40,7 +40,7 @@ def login(request):
     request.session['user_id'] = user.id
     request.session['user_username'] = user.username
     request.session['user_email'] = user.email
-    return redirect('/games')
+    return redirect('/success')
 
 def success(request):
     
@@ -48,7 +48,7 @@ def success(request):
         messages.error(request, 'Please log in to view this page')
         return redirect('/')
 
-    return render(request, 'success.html')
+    return redirect('/games')
 
 def logout (request):
     del request.session['user_id']

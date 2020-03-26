@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
     <div class='row'>
         <div class='col-10'>
@@ -16,16 +18,35 @@
             <a href='/logout'>Logout</a>
         </div>
     </div>
-    <h1>{{ game.game_name }}</h1>
+    <h1>Game: {{ game.game_name }}</h1>
+
+    {% for message in messages %}
+    <p style='color: red;'>{{ message }}</p>
+    {% endfor %}
 
     <div class='row'>
         <div class='col'>
-            <p>{{ game.number_of_players }}</p>
-            <p>{{ game.instructions }}</p>
-            <p>{{ game.creator.username }}</p>
-            <p>{{ game.updated_at }}</p>
+            <p>Number of Players: {{ game.number_of_players }}</p>
+            <p>Instructions: {{ game.instructions }}</p>
+            <p>User: {{ game.creator.username }}</p>
+            <p>Updated at :{{ game.updated_at }}</p>
         </div>
     </div>
+    {% for review in game.reviews.all %}
+    <p></p>
+    <p>{{review.user.username}} said : {{review.comment}} and rated: {{review.rating}} stars</p>
+    {% endfor %}
+    <form action='create_review' method='POST'>
+        {% csrf_token %}
+        Rating:<br>
+        <input type='number' name='rating' min='1' max='5'><br>
+        Comment:<br>
+        <textarea name='comment'></textarea> <br>
+        <input type='submit'>
+    </form>
+
+
+
 
 
 
@@ -39,4 +60,5 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
