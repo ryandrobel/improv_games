@@ -1,0 +1,36 @@
+*{
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-decoration: none;
+}
+
+body{
+    
+}
+
+body::after {
+    content: "";
+    background-image:url('../img/improv+troupe.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1; 
+}
+
+
+h3{
+    margin-right: 20px;
+}
+
+table{
+    border: 2px solid whitesmoke;
+    text-shadow: black;
+    
+}

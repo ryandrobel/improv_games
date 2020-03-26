@@ -2,21 +2,23 @@
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games Index</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
+        <link rel="stylesheet" href="{% static 'css/games_index_style.css' %}">
 </head>
 
 <body>
+    
     <div class='row'>
-        <div class='col-10'>
-            <a href='/games/add_game'>Add a Games</a>
+        <div class='col'>
+            <h3><a href='/games/add_game'>Add a Game</a></h3>
         </div>
         <div class='col'>
-            <a href='/logout'>Logout</a>
+            <h3><a href='/logout'>Logout</a></h3>
         </div>
     </div>
     <div class='row'>
