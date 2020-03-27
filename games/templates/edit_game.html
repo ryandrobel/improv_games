@@ -2,23 +2,25 @@
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a game</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="{% static 'css/edit_game.css' %}">
+    </head>
 
 <body>
     <div class='container-fluid'>
         <div class='row'>
-            <div class='col-10'>
-                <a href='/games'>Games Page</a>
+            <div class='col'>
+                <h3><a href='/games'>Games Page</a></h3>
             </div>
             <div class='col'>
-                <a href='/logout'>Logout</a>
+                <h3><a href='/logout'>Logout</a></h3>
             </div>
-        </div>
+        </div><br><br>
         
 
         {% for message in messages %}
@@ -27,16 +29,16 @@
 
         <div class='row'>
             <div class='col align-items-center'>
-                <h1>Edit Game</h1>
+                <h1>Edit Game</h1><br>
                 <p>{{game.game_name}}</p>
                 <p>{{game.number_of_players}}</p>
                 <p>{{game.instructions}}</p>
 
                 <form action='/games/{{game.id}}/update' method='POST'>
                     {% csrf_token %}
-                    Game Name:<input name='game_name' type='text'><br>
-                    Number of Players:<input name='number_of_players' type='text'><br>
-                    Instructions:<input name='instructions' type='text'><br>
+                    Game Name:<input name='game_name' type='text'><br><br>
+                    Number of Players:<input name='number_of_players' type='text'><br><br>
+                    Instructions:<textarea name='instructions'></textarea><br><br>
                     <input type='submit' value='update'>
 
 
