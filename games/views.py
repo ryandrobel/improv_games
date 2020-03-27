@@ -6,7 +6,7 @@ from .models import Game, User, Review
 def games_index(request):
 
     context = {
-        'all_games': Game.objects.all()
+        'all_games': Game.objects.all().order_by("game_name")
     }
 
     return render(request, 'games_index.html', context)
@@ -40,6 +40,7 @@ def view_game(request, game_id):
         'game': Game.objects.get(id = game_id),
         
     }
+
 
     return render(request, 'view_game.html', context)
 

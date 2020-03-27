@@ -10,8 +10,8 @@ class GameManager(models.Manager):
         if len(post_data['number_of_players']) < 1 or len(post_data['number_of_players']) > 100:
             errors['number_of_players'] = "Number of players name has to be between 1 and 100 characters!"
 
-        if len(post_data['instructions']) < 3 or len(post_data['instructions']) > 500:
-            errors['instructions'] = "instructions have to be between 3 and 500 characters!"
+        if len(post_data['instructions']) < 3 or len(post_data['instructions']) > 5000:
+            errors['instructions'] = "instructions have to be between 3 and 5000 characters!"
 
         return errors
 

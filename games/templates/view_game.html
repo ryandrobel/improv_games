@@ -2,23 +2,25 @@
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a game</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="{% static 'css/view_game_style.css' %}">
+    </head>
 
 <body>
     <div class='row'>
-        <div class='col-10'>
-            <a href='/games'>Games Page</a>
+        <div class='col'>
+            <h3><a href='/games'>Games Page</a></h3>
         </div>
         <div class='col'>
-            <a href='/logout'>Logout</a>
-        </div>
+            <h3><a href='/logout'>Logout</a></h3>
+        </div><br><br>
     </div>
-    <h1>Game: {{ game.game_name }}</h1>
+    <h1>Game: {{ game.game_name }}</h1><br>
 
     {% for message in messages %}
     <p style='color: red;'>{{ message }}</p>
@@ -34,7 +36,9 @@
     </div>
     {% for review in game.reviews.all %}
     <p></p>
-    <p>{{review.user.username}} said : {{review.comment}} and rated: {{review.rating}} stars</p>
+    <p>{{review.user.username}} said : {{review.comment}} and rated: {{review.rating}}{% if review.rating > 1 %} stars
+        {% else %} star {% endif %}
+    </p>
     {% endfor %}
     <form action='create_review' method='POST'>
         {% csrf_token %}
